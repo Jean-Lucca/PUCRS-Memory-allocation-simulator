@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class Simulador {
     private ArrayList<Particao> memoria;
@@ -8,7 +7,7 @@ public class Simulador {
 
     public Simulador(int tamanhoDaMemoria, Politica politica) {
         this.memoria = new ArrayList<>();
-        this.memoria.add(new Particao(0, "INIT",tamanhoDaMemoria , false));
+        this.memoria.add(new Particao("INIT",tamanhoDaMemoria , false));
         this.politica = politica;
     }
 
@@ -17,7 +16,7 @@ public class Simulador {
         this.memoria = new ArrayList<>();
         this.tamanhoDaParticao = tamanhoDaParticao;
         for(int i=0;i<tamanhoDaMemoria/tamanhoDaParticao;i++) {
-            this.memoria.add(new Particao(i, "INIT",tamanhoDaParticao , false));
+            this.memoria.add(i, new Particao("INIT",tamanhoDaParticao , false));
             memoria.get(i).setEspacoOcupado(0);
         }
     }
@@ -60,7 +59,7 @@ public class Simulador {
             if(r.getTamanho() <= p.getTamanho() && p.getEspacoOcupado() == 0) {
                 p.setEspacoOcupado(r.getTamanho());
                 p.setId(r.getId());
-                return p.getIndice();
+                return 1;
             }
         }
         return -1;
@@ -71,7 +70,7 @@ public class Simulador {
         for(Particao p : memoria) {
             if(p.getId().equals(r.getId())) {
                 p.setEspacoOcupado(0);
-                return p.getIndice();
+                return 1;
             }
         }
         return -1;
@@ -88,13 +87,11 @@ public class Simulador {
         }
         //particiona
         int resto = memoria.get(indice).getTamanho() - r.getTamanho();
-        p.setIndice(indice);
         memoria.remove(indice);
         memoria.add(indice, p);
         if(resto != 0) {
             //se nao cabe direitinho cria uma particao nova vazia
-            int inicio = indice + r.getTamanho();
-            memoria.add(indice+1, new Particao(inicio, "vazio", resto, false));
+            memoria.add(indice+1, new Particao("vazio", resto, false));
         }
         return indice;
     }
@@ -105,7 +102,7 @@ public class Simulador {
             if(p.getId().equals(r.getId()) && p.isOcupado()) {
                 p.setOcupado(false);
                 desfragmentar();
-                return p.getIndice();
+                return 1;
             }
         }
         return -1;
@@ -166,7 +163,7 @@ public class Simulador {
         System.out.println("------------------");
         for(Particao p : memoria) {
             if(!p.isOcupado()) {
-                System.out.print("| "+p.getEspacoOcupado()+" |");
+                System.out.print("| "+p.getTamanho()+" |");
             }
         }
         System.out.println();

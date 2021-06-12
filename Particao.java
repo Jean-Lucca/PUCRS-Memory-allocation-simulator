@@ -3,11 +3,9 @@ public class Particao {
     private String id;
     private int tamanho;
     private int espacoOcupado = 0;
-    private int indice = -1;
     private boolean ocupado = false;
     
-    public Particao(int indice, String id, int tamanho, boolean ocupado){
-        this.indice = indice;
+    public Particao(String id, int tamanho, boolean ocupado){
         this.ocupado = ocupado;
         this.id = id;
         this.tamanho = tamanho;
@@ -15,7 +13,6 @@ public class Particao {
     }
 
     public Particao(String id, int tamanho){
-        this.indice = -1;
         this.ocupado = true;
         this.id = id;
         this.tamanho = tamanho;
@@ -34,16 +31,8 @@ public class Particao {
         return tamanho;
     }
 
-    public int getIndice() {
-        return indice;
-    }
-
     public void setOcupado(boolean ocupado) {
         this.ocupado = ocupado;
-    }
-    
-    public void setIndice(int indice) {
-        this.indice = indice;
     }
 
     public void setId(String id) {
