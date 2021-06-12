@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Simulador {
     private ArrayList<Particao> memoria;
@@ -46,7 +47,11 @@ public class Simulador {
                 }
             }
         }
-        mostrarMemoria();
+        if(tamanhoDaParticao != -1) {
+            mostrarMemoriaFixa();
+        } else {
+            mostrarMemoria();
+        }
     }
 
     //adiciona requisicao na primeira particao possivel sem redimensionar as particoes
@@ -119,6 +124,42 @@ public class Simulador {
                 i--;
             }
         }
+    }
+
+    //que coisa feia puta merda
+    public void mostrarMemoriaFixa() {
+        ArrayList<Integer> tmp = new ArrayList<Integer>();
+        for(Particao p : memoria) {
+            int i =0;
+            while(i < p.getTamanho()) {
+                if(i < p.getEspacoOcupado()) {
+                    tmp.add(1);
+                } else {
+                    tmp.add(0);
+                }
+                i++;
+            }
+        }
+
+        int acc =0;
+        ArrayList<Integer> aux = new ArrayList<Integer>();
+        for(int i=0;i<tmp.size();i++) {
+            if(tmp.get(i) == 0) {
+                acc++;
+            }
+
+            if(tmp.get(i) == 1) {
+                if(acc!=0) { aux.add(acc); }
+                acc = 0;
+            }
+        }
+        aux.add(acc);
+        
+        for(int i : aux) {
+            System.out.print("| "+i+" |");
+        }
+        System.out.println();
+        aux = new ArrayList<Integer>();
     }
 
     public void mostrarMemoria() {
