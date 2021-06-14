@@ -36,7 +36,7 @@ public class Main {
 
         if(tamanhoDaMemoria / tamanhoDaParticao < 1) { 
             System.out.println("O tamanho de partição não pode ser maior que a memória");
-            menuFixo()
+            menuFixo();
         } else {
             sim = new Simulador(tamanhoDaMemoria, tamanhoDaParticao);
         }
