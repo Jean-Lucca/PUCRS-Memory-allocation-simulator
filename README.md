@@ -1,5 +1,7 @@
 Pode ser executado via arquivo jar ou linha de comando utilizando java (versão 8 ou superior)
+
 Ex:
+
 java Main [localizacao do arquivo]
 java -jar [localizacao do arquivo]
 java -jar simulador.jar req.txt
