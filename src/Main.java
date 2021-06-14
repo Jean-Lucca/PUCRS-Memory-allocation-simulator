@@ -15,7 +15,7 @@ public class Main {
         l.le(arquivo);
 
         System.out.println("1. Partições Fixas");
-        System.out.println("2. Partições Variáveis ");
+        System.out.println("2. Partições Variáveis");
         System.out.println("0. Sair");
 
         int op = scan.nextInt();
@@ -25,7 +25,7 @@ public class Main {
     }
 
     public static void menuFixo() {
-        System.out.println("Tamanho da memória ");
+        System.out.println("Tamanho da memória");
         int tamanhoDaMemoria = scan.nextInt();
 
         System.out.println("Tamanho das partições");
